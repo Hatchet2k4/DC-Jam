@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="DC-Jam"
 run/main_scene="res://DC_Test.tscn"
-config/icon="res://icon.png"
+config/icon="res://icon.icns"
 
 [display]
 
