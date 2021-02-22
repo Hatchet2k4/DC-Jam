@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DC-Jam.png-c34e2f07b2cc1ecbd5f5678482d1bb0c.stex"
+path="res://.import/DC-Jam.png-76e7ad36b0714b9cfd2b90198c8ea682.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Export/DC-Jam.png"
-dest_files=[ "res://.import/DC-Jam.png-c34e2f07b2cc1ecbd5f5678482d1bb0c.stex" ]
+source_file="res://docs/DC-Jam.png"
+dest_files=[ "res://.import/DC-Jam.png-76e7ad36b0714b9cfd2b90198c8ea682.stex" ]
 
 [params]
 
