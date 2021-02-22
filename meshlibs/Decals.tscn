@@ -1,0 +1,93 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://textures/tech.png" type="Texture" id=1]
+[ext_resource path="res://textures/flat1mid.png" type="Texture" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+params_blend_mode = 3
+albedo_color = Color( 1, 1, 1, 0 )
+albedo_texture = ExtResource( 2 )
+uv1_triplanar = true
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+
+[sub_resource type="Skin" id=3]
+
+[sub_resource type="BoxShape" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 3, 2, 2 )
+
+[sub_resource type="CubeMesh" id=6]
+material = SubResource( 5 )
+
+[sub_resource type="StreamTexture" id=7]
+flags = 7
+load_path = "res://.import/wall1.png-431824518772101116c944d8e2fc8309.s3tc.stex"
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.572549, 0.572549, 0.678431, 1 )
+albedo_texture = SubResource( 7 )
+uv1_triplanar = true
+
+[sub_resource type="CubeMesh" id=9]
+material = SubResource( 8 )
+
+[sub_resource type="StreamTexture" id=10]
+flags = 7
+load_path = "res://.import/wall1.png-431824518772101116c944d8e2fc8309.s3tc.stex"
+
+[sub_resource type="SpatialMaterial" id=11]
+albedo_texture = SubResource( 10 )
+uv1_triplanar = true
+
+[sub_resource type="CubeMesh" id=12]
+material = SubResource( 11 )
+
+[node name="Walls" type="Spatial"]
+
+[node name="Wall1" type="MeshInstance" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.904005, 1, 0 )
+mesh = SubResource( 2 )
+skin = SubResource( 3 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Wall1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall1/StaticBody"]
+shape = SubResource( 4 )
+
+[node name="Wall4" type="MeshInstance" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 9.07315, 1, 0 )
+mesh = SubResource( 6 )
+skin = SubResource( 3 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Wall4"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall4/StaticBody"]
+shape = SubResource( 4 )
+
+[node name="Wall2" type="MeshInstance" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 4.57532, 1, 0 )
+mesh = SubResource( 9 )
+skin = SubResource( 3 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Wall2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall2/StaticBody"]
+shape = SubResource( 4 )
+
+[node name="Wall3" type="MeshInstance" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -6.12369, 1, 0 )
+mesh = SubResource( 12 )
+skin = SubResource( 3 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Wall3"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall3/StaticBody"]
+shape = SubResource( 4 )
