@@ -12,6 +12,8 @@ var ticks = 0
 var turndirection = 0
 var movedirection = 0
 
+var curposition = Vector3(0,0,0)
+
 func _ready():
 	
 	pass 
@@ -20,7 +22,8 @@ func _ready():
 func snap_to_grid():
 	translation.x=stepify(translation.x, 1)
 	translation.y=stepify(translation.y, 1)
-	translation.z=stepify(translation.z, 1)	
+	translation.z=stepify(translation.z, 1)
+	rotation.y=stepify(rotation.y, PI/4)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -31,12 +34,14 @@ func _process(delta):
 	#var local_direction = get_rotation().rotated(Vector3(0,1,0), rotation.y)
 	if not moving and not turning: 
 		if Input.is_action_just_pressed("ui_up"):
+			curposition = translation
 			facing_direction = get_transform().basis.x
 			movedirection = 1
 			moving = true
 			ticks = 60
 
 		elif Input.is_action_just_pressed("ui_down"):
+			curposition = translation
 			facing_direction = get_transform().basis.x
 			#move_and_slide(facing_direction * MOVEDIST)
 			movedirection = -1
@@ -66,9 +71,10 @@ func _process(delta):
 				ticks = 0
 			else:
 				ticks-=5
-				if ticks <=0:
+				if ticks <=0 or (translation - curposition).length() >=2.0:
 					moving=false
 					snap_to_grid()	
+					curposition = translation
 		elif turning:			
 			rotate_y(PI/24 * turndirection)
 			ticks-=5
@@ -76,7 +82,7 @@ func _process(delta):
 				turning=false
 				snap_to_grid()
 				
-	lbl.text = str( translation )
+	lbl.text = str( translation )  + "\n" + str(rotation)
 
 		
 		
