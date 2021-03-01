@@ -1,37 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://meshlibs/Walls.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
 [ext_resource path="res://Player.gd" type="Script" id=3]
-[ext_resource path="res://textures/skelly.png" type="Texture" id=4]
 [ext_resource path="res://GridMap_Walls.gd" type="Script" id=5]
 
 [sub_resource type="BoxShape" id=1]
-
-[sub_resource type="SpatialMaterial" id=2]
-params_cull_mode = 2
-params_billboard_mode = 1
-params_billboard_keep_scale = true
-params_use_alpha_scissor = true
-params_alpha_scissor_threshold = 0.98
-albedo_texture = ExtResource( 4 )
-
-[sub_resource type="QuadMesh" id=3]
-material = SubResource( 2 )
-
-[sub_resource type="QuadMesh" id=4]
-
-[sub_resource type="StreamTexture" id=5]
-flags = 7
-load_path = "res://.import/vagimon.png-36a5346096b62e27cf6e79caf5990eb9.s3tc.stex"
-
-[sub_resource type="SpatialMaterial" id=6]
-params_cull_mode = 2
-params_billboard_mode = 1
-params_billboard_keep_scale = true
-params_use_alpha_scissor = true
-params_alpha_scissor_threshold = 0.98
-albedo_texture = SubResource( 5 )
 
 [node name="DC_Test" type="Spatial"]
 
@@ -76,7 +50,7 @@ __meta__ = {
 }
 
 [node name="Player" type="KinematicBody" parent="Control/ViewportContainer/Viewport"]
-transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 1, 0 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 1, 0 )
 script = ExtResource( 3 )
 
 [node name="Camera" type="Camera" parent="Control/ViewportContainer/Viewport/Player"]
@@ -112,18 +86,3 @@ shadow_enabled = true
 transform = Transform( 0.962592, 0, 0.270953, 0, 1, 0, -0.270953, 0, 0.962592, 23.7714, 1.18085, 3.27798 )
 light_energy = 3.0
 spot_range = 8.0
-
-[node name="KinematicBody" type="KinematicBody" parent="Control/ViewportContainer/Viewport"]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 21, 1, -2 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Control/ViewportContainer/Viewport/KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1 )
-mesh = SubResource( 3 )
-material/0 = null
-
-[node name="KinematicBody2" type="KinematicBody" parent="Control/ViewportContainer/Viewport"]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 21, 1, -2 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Control/ViewportContainer/Viewport/KinematicBody2"]
-mesh = SubResource( 4 )
-material/0 = SubResource( 6 )
