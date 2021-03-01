@@ -21,7 +21,7 @@ func _process(delta):
 	#moveDirection = Vector3(0,0,0)
 	angle = get_rotation().y   
 	var lbl = get_parent().get_node("debug")
-	#lbl.text = str( translation )
+	
 	
 	#var local_direction = get_rotation().rotated(Vector3(0,1,0), rotation.y)
 	if not moving and not turning: 
@@ -57,10 +57,12 @@ func _process(delta):
 			ticks-=5
 			if ticks <=0:
 				moving=false
+				lbl.text = str( translation )
 		elif turning:			
 			rotate_y(PI/24 * turndirection)
 			ticks-=5
 			if ticks <=0:
 				turning=false
+				lbl.text = str( translation )
 		
 		
