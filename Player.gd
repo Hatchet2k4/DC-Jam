@@ -13,14 +13,21 @@ var turndirection = 0
 var movedirection = 0
 
 func _ready():
+	
 	pass 
 
+
+func snap_to_grid():
+	translation.x=stepify(translation.x, 1)
+	translation.y=stepify(translation.y, 1)
+	translation.z=stepify(translation.z, 1)	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#moveDirection = Vector3(0,0,0)
 	angle = get_rotation().y   
 	var lbl = get_parent().get_node("debug")
+	lbl.text = str( translation )
 	
 	
 	#var local_direction = get_rotation().rotated(Vector3(0,1,0), rotation.y)
@@ -54,15 +61,22 @@ func _process(delta):
 	else:
 		if moving:
 			move_and_slide(facing_direction * -10 * movedirection)
+			print (get_slide_count())
+			if get_slide_count() > 1:			
+				moving = false
+				snap_to_grid()
+				lbl.text = str( translation )
 			ticks-=5
 			if ticks <=0:
 				moving=false
+				snap_to_grid()
 				lbl.text = str( translation )
 		elif turning:			
 			rotate_y(PI/24 * turndirection)
 			ticks-=5
 			if ticks <=0:
 				turning=false
+				snap_to_grid()
 				lbl.text = str( translation )
 		
 		
