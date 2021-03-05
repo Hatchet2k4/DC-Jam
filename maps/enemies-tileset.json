@@ -1,4 +1,12 @@
 { "columns":0,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"",
+         "target":"."
+        }
+    },
  "grid":
     {
      "height":1,
@@ -9,7 +17,7 @@
  "name":"enemies-tileset",
  "objectalignment":"topleft",
  "spacing":0,
- "tilecount":2,
+ "tilecount":3,
  "tiledversion":"1.4.2",
  "tileheight":32,
  "tiles":[
@@ -22,6 +30,12 @@
         {
          "id":1,
          "image":"start.png",
+         "imageheight":32,
+         "imagewidth":32
+        }, 
+        {
+         "id":2,
+         "image":"vagimon.png",
          "imageheight":32,
          "imagewidth":32
         }],

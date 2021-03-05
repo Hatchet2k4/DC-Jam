@@ -43,6 +43,7 @@ script = ExtResource( 6 )
 
 [node name="GridMap_Walls" type="GridMap" parent="Control/ViewportContainer/Viewport/World"]
 mesh_library = ExtResource( 1 )
+cell_octant_size = 4
 cell_center_x = false
 cell_center_z = false
 data = {

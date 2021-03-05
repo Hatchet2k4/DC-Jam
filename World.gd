@@ -9,6 +9,7 @@ extends Spatial
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var skelly = preload("res://objects/Skelly.tscn")
+	var vag = preload("res://objects/Vagimon.tscn")
 	var grid = get_node("GridMap_Walls")
 	
 	var file = File.new()
@@ -46,6 +47,10 @@ func _ready():
 					var s = skelly.instance()
 					s.translate(Vector3(o["x"]/16, 0.5, o["y"]/16))										
 					add_child(s)					
+				elif o["type"] == "Vagimon":
+					var s = vag.instance()
+					s.translate(Vector3(o["x"]/16, 0.5, o["y"]/16))										
+					add_child(s)										
 				elif o["type"] == "Start":
 					$Player.translate(Vector3(-o["x"]/16, 0, -o["y"]/16))
 					

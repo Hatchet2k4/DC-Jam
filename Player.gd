@@ -1,9 +1,10 @@
-extends KinematicBody
+extends Entity
 
 
 #var moveDirection = Vector3(0,0,0)
 var angle = 0
 var facing_direction=0
+
 const MOVEDIST = 120
 #onready var lbl: Label = get_node("/root/DC_Test/Label")  #find_node("TileMap", true, false)
 var moving = false
@@ -14,19 +15,17 @@ var movedirection = 0
 
 var curposition = Vector3(0,0,0)
 
-func _ready():
-	
-	pass 
 
 
-func snap_to_grid():
-	translation.x=stepify(translation.x, 1)
-	translation.y=stepify(translation.y, 1)
-	translation.z=stepify(translation.z, 1)
-	rotation.y=stepify(rotation.y, PI/4)
+
+
+
+
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#moveDirection = Vector3(0,0,0)
 	angle = get_rotation().y   
 	var lbl = get_parent().get_node("debug")
@@ -77,12 +76,14 @@ func _process(delta):
 					curposition = translation
 		elif turning:			
 			rotate_y(PI/24 * turndirection)
+			
 			ticks-=5
+			calc_facing()
 			if ticks <=0:
 				turning=false
 				snap_to_grid()
 				
-	lbl.text = str( translation )  + "\n" + str(rotation)
+	lbl.text = str( translation )  + "\n" + str(get_rotation().y) + "\n" + "facing: " + str(facing)
 
 		
 		
