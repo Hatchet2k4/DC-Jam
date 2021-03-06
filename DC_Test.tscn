@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://meshlibs/Walls.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
 [ext_resource path="res://Player.gd" type="Script" id=3]
+[ext_resource path="res://scripts/Inventory.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GridMap_Walls.gd" type="Script" id=5]
 [ext_resource path="res://World.gd" type="Script" id=6]
 
@@ -91,3 +92,9 @@ shadow_enabled = true
 transform = Transform( 0.962593, 0, 0.270953, 0, 1, 0, -0.270953, 0, 0.962593, 23.7714, 1.18085, 3.27798 )
 light_energy = 3.0
 spot_range = 8.0
+
+[node name="Inventory" parent="Control" instance=ExtResource( 4 )]
+margin_left = 831.797
+margin_top = 11.1118
+margin_right = 831.797
+margin_bottom = 11.1118

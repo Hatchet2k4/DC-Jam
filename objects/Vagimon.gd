@@ -32,7 +32,7 @@ func _process(delta):
 		if frame > 1: 
 			frame=0
 		
-		print ( str(distance_to_player()) )
+		#print ( str(distance_to_player()) )
 	apply_texture($MeshInstance, textures[d_frame][frame])
 	
 	

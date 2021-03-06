@@ -4,6 +4,12 @@ class_name Entity, "res://objects/entity.png"
 
 var facing = 0
 
+var data = {
+	hp = 10,
+	damage=1	
+}
+
+
 func calc_facing():
 	var angle = get_rotation().y
 	

@@ -17,10 +17,9 @@ var curposition = Vector3(0,0,0)
 
 
 
-
-
-
-
+func _ready():
+	data.hp=20
+	data.damage=2
 
 
 
