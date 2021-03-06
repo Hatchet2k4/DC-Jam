@@ -17,3 +17,5 @@ shape = SubResource( 1 )
 material_override = ExtResource( 2 )
 mesh = SubResource( 2 )
 material/0 = null
+
+[node name="Spatial" type="Spatial" parent="."]

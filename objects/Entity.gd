@@ -1,6 +1,6 @@
 extends KinematicBody
 
-class_name Entity, "res://objects/entity.svg"
+class_name Entity, "res://objects/entity.png"
 
 var facing = 0
 
