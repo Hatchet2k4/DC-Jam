@@ -6,7 +6,7 @@ const ICON_PATH = "res://textures/items/"
 const ITEMS = {
 	"armor": {
 		"name": "armor",
-		"icon": ICON_PATH + "sword.png",
+		"icon": ICON_PATH + "armor.png",
 		"slot": "CHEST",
 		"w": 2,
 		"h": 2,
