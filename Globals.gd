@@ -25,7 +25,7 @@ const A_SOUTHWEST = PI + PI/4
 const A_WEST = PI + PI/2
 const A_NORTHWEST = PI*2 - PI/4
 
-onready var player = find_node("Player", true, false)
+onready var player = get_tree().get_root().find_node("Player", true, false)
 
 func _ready():
 	player = get_tree().get_root().find_node("Player", true, false)
