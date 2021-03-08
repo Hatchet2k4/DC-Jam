@@ -6,6 +6,8 @@ onready var inv_base = $InventoryBase
 onready var grid_bkpk = $GridBackPack
 onready var eq_slots = $EquipmentSlots
  
+onready var msg:Label = get_tree().get_root().find_node("Messages", true, false)
+
 var item_held = null
 var item_offset = Vector2()
 var last_container = null
@@ -36,7 +38,8 @@ func grab(cursor_pos):
 			last_pos = item_held.rect_global_position
 			item_offset = item_held.rect_global_position - cursor_pos
 			move_child(item_held, get_child_count())
- 
+			msg.text = item_held.get_meta("id")
+
 func release(cursor_pos):
 	if item_held == null:
 		return

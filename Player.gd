@@ -11,7 +11,6 @@ var moving = false
 var turning = false
 var ticks = 0
 var turndirection = 0
-var movedirection = 0
 
 var movestring=""
 
@@ -48,7 +47,7 @@ func _process(_delta):
 	
 	else:
 		if moving:
-			var c = move_and_slide(facing_direction * -10 * movedirection)
+			var c = move_and_slide(facing_direction * -10)
 			print (c.length())
 			if c.length() < 0.1: #hack			
 				plrMove("Stop")				
@@ -71,41 +70,40 @@ func _process(_delta):
 				
 	lbl.text = str( translation )  + "\n" + str(get_rotation().y) + "\n" + "facing: " + str(facing)
 
-func plrMove(direction):
-	
+func plrMove(direction):	
 	if direction == "Stop":
 		var btn:Button = get_tree().get_root().find_node("Button"+movestring, true, false)
 		btn.modulate.a=0
 		moving = false
 		turning = false		
-	elif not moving and not turning: 
-		movestring=direction
-		var btn:Button = get_tree().get_root().find_node("Button"+movestring, true, false)
-		btn.modulate.a=60
-		
-		
-		if direction in ["TurnLeft", "TurnRight"]:
-			turning=true
-			ticks = 60
-			if direction == "TurnLeft":
-				turndirection = 1
-			elif direction == "TurnRight":
-				turndirection = -1
-		else:
-			moving = true
-			ticks = 60
-			curposition = translation
-			facing_direction = get_transform().basis.x
-			if direction == "MoveUp":
-				movedirection = 1
-			elif direction == "MoveDown":
-				movedirection = -1
-			elif direction == "MoveLeft":
-				movedirection = 0
-			elif direction == "MoveRight":
-				movedirection = 0
+		ticks=0
+	else:
+		if not moving and not turning: 
+			movestring=direction
+			var btn:Button = get_tree().get_root().find_node("Button"+movestring, true, false)
+			btn.modulate.a=60
 			
-		
+			if direction in ["TurnLeft", "TurnRight"]:
+				turning=true
+				ticks = 60
+				if direction == "TurnLeft":
+					turndirection = 1
+				elif direction == "TurnRight":
+					turndirection = -1
+			else:
+				moving = true
+				ticks = 60
+				curposition = translation
+				facing_direction = get_transform().basis.x
+				if direction == "MoveUp":
+					pass				
+				elif direction == "MoveDown":
+					facing_direction = facing_direction.rotated(Globals.UP, PI)
+				elif direction == "MoveLeft":				
+					facing_direction = facing_direction.rotated(Globals.UP, PI/2)
+				elif direction == "MoveRight":				
+					facing_direction = facing_direction.rotated(Globals.UP, -PI/2)
+
 
 func _on_ButtonTurnLeft_pressed():
 	plrMove("TurnLeft")
