@@ -1,12 +1,11 @@
 extends Entity
 
-
-#var moveDirection = Vector3(0,0,0)
 var angle = 0
-var facing_direction=0
+var moving_direction=0
+var facing_direction = Vector3(0,0,0)
 
 const MOVEDIST = 120
-#onready var lbl: Label = get_node("/root/DC_Test/Label")  #find_node("TileMap", true, false)
+
 var moving = false
 var turning = false
 var ticks = 0
@@ -16,13 +15,11 @@ var movestring=""
 
 var curposition = Vector3(0,0,0)
 
-
+onready var wheel = get_tree().get_root().find_node("TimeWheel", true, false)
 
 func _ready():
 	data.hp=20
 	data.damage=2
-
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -47,7 +44,7 @@ func _process(_delta):
 	
 	else:
 		if moving:
-			var c = move_and_slide(facing_direction * -10)
+			var c = move_and_slide(moving_direction * -10)
 			print (c.length())
 			if c.length() < 0.1: #hack			
 				plrMove("Stop")				
@@ -70,6 +67,31 @@ func _process(_delta):
 				
 	lbl.text = str( translation )  + "\n" + str(get_rotation().y) + "\n" + "facing: " + str(facing)
 
+func canMove(direction):
+	if direction in ["TurnLeft", "TurnRight"]: 
+		return true	
+	
+	
+	return true
+	
+	var space_state = get_world().direct_space_state
+	var d = -global_transform.basis.z.normalized() * 2
+	
+	if direction=="MoveUp":
+		pass
+	elif direction == "MoveDown":
+		d = d.rotated(Globals.UP, PI)
+	elif direction == "MoveLeft":
+		d = d.rotated(Globals.UP, PI/2)
+	elif direction == "MoveRight":
+		d = d.rotated(Globals.UP, -PI/2)
+	
+	var result = space_state.intersect_ray(global_transform.origin, global_transform.origin + d)
+	if result:
+		return false
+	else:
+		return true
+
 func plrMove(direction):	
 	if direction == "Stop":
 		var btn:Button = get_tree().get_root().find_node("Button"+movestring, true, false)
@@ -78,7 +100,10 @@ func plrMove(direction):
 		turning = false		
 		ticks=0
 	else:
-		if not moving and not turning: 
+		var m = canMove(direction)
+		print(m)
+		if not moving and not turning and m: 
+			
 			movestring=direction
 			var btn:Button = get_tree().get_root().find_node("Button"+movestring, true, false)
 			btn.modulate.a=60
@@ -93,16 +118,17 @@ func plrMove(direction):
 			else:
 				moving = true
 				ticks = 60
+				wheel.decrement()
 				curposition = translation
-				facing_direction = get_transform().basis.x
+				moving_direction = get_transform().basis.x
 				if direction == "MoveUp":
 					pass				
 				elif direction == "MoveDown":
-					facing_direction = facing_direction.rotated(Globals.UP, PI)
+					moving_direction = moving_direction.rotated(Globals.UP, PI)
 				elif direction == "MoveLeft":				
-					facing_direction = facing_direction.rotated(Globals.UP, PI/2)
+					moving_direction = moving_direction.rotated(Globals.UP, PI/2)
 				elif direction == "MoveRight":				
-					facing_direction = facing_direction.rotated(Globals.UP, -PI/2)
+					moving_direction = moving_direction.rotated(Globals.UP, -PI/2)
 
 
 func _on_ButtonTurnLeft_pressed():
