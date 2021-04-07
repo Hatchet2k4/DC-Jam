@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://meshlibs/Walls.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://textures/arrows.png" type="Texture" id=8]
 [ext_resource path="res://textures/ring1.png" type="Texture" id=9]
 [ext_resource path="res://TextureProgress.gd" type="Script" id=10]
+[ext_resource path="res://MiniMap2.gd" type="Script" id=11]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -62,7 +63,8 @@ data = {
 }
 script = ExtResource( 5 )
 __meta__ = {
-"_editor_clip_": 0
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
 }
 
 [node name="Player" type="KinematicBody" parent="Control/ViewportContainer/Viewport/World"]
@@ -229,6 +231,16 @@ tint_under = Color( 0, 0, 0, 1 )
 tint_over = Color( 1, 1, 1, 0 )
 tint_progress = Color( 0.545098, 0.101961, 0.101961, 1 )
 script = ExtResource( 10 )
+
+[node name="MiniMap" type="Control" parent="Control"]
+margin_left = 10.0
+margin_top = 490.0
+margin_right = 234.0
+margin_bottom = 714.0
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Control/MoveButtons/ButtonTurnLeft" to="Control/ViewportContainer/Viewport/World/Player" method="_on_ButtonTurnLeft_pressed"]
 [connection signal="pressed" from="Control/MoveButtons/ButtonTurnRight" to="Control/ViewportContainer/Viewport/World/Player" method="_on_ButtonTurnRight_pressed"]
 [connection signal="pressed" from="Control/MoveButtons/ButtonMoveUp" to="Control/ViewportContainer/Viewport/World/Player" method="_on_ButtonMoveUp_pressed"]
